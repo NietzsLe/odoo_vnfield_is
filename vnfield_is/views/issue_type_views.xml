@@ -1,0 +1,26 @@
+<odoo>
+    <record id="issue_type_tree_view" model="ir.ui.view">
+        <field name="name">issue.type.tree</field>
+        <field name="model">vnfield.issue.type</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="id" />
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+    <record id="issue_type_form_view" model="ir.ui.view">
+        <field name="name">issue.type.form</field>
+        <field name="model">vnfield.issue.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="id" />
+                    <field name="name" />
+                    <field name="description" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

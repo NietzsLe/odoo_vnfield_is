@@ -1,0 +1,121 @@
+<odoo>
+    <record id="issue_kanban_action_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">kanban</field>
+        <field name="act_window_id" ref="vnfield_issue_action" />
+    </record>
+    <record model="ir.ui.view" id="issue_tree_view">
+        <field name="name">issue.tree</field>
+        <field name="model">vnfield.issue</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="id" />
+                <field name="name" />
+                <field name="description" />
+                <field name="comment" />
+                <field name="priority" />
+                <field name="status" />
+                <field name="report_at" />
+                <field name="reporter_id" />
+                <field name="issue_type_id" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="issue_form_view">
+        <field name="name">issue.form</field>
+        <field name="model">vnfield.issue</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" />
+                            <field name="name" />
+                            <field name="description" />
+                            <field name="comment" />
+                            <field name="priority" />
+                            <field name="result_type" />
+                        </group>
+                        <group>
+                            <field name="status" />
+                            <field name="resolve_period" />
+                            <field name="reporter_id" />
+                            <field name="resolver_id" />
+                            <field name="issue_type_id" />
+                        </group>
+
+
+                    </group>
+                    <group>
+
+                    </group>
+                    <notebook>
+                        <page string="Other Information">
+                            <group>
+                                <group>
+                                    <field name="report_at" />
+                                    <field name="resolve_at" />
+                                </group>
+                                <group>
+                                    <field name="assign_at" />
+                                    <field name="project_id" />
+
+                                </group>
+
+                            </group>
+                            <group>
+                                <field name="attachment_ids"
+                                    widget="many2many_binary" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" options="{'post_refresh':True}"
+                        groups="base.group_user" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="issue_kanban_view">
+        <field name="name">issue.kanban</field>
+        <field name="model">vnfield.issue</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_content  oe_kanban_global_click">
+                            <div class="d-flex flex-row gap-1">
+                                <div class="">
+                                    <field name="id" />
+                                </div>
+                                <div>
+                                    <field name="name" />
+                                </div>
+                            </div>
+                            <div>
+                                <field name="status" />
+                            </div>
+                            <div>
+                                <field name="priority" />
+                            </div>
+                            <div>
+                                <field name="report_at" />
+                            </div>
+                            <div>
+                                <field name="resolve_period" />
+                            </div>
+                            <div>
+                                <field name="reporter_id" />
+                            </div>
+                            <div>
+                                <field name="resolver_id" />
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

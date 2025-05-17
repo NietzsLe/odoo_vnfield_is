@@ -1,0 +1,164 @@
+<odoo>
+    <record id="task_kanban_action_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">kanban</field>
+        <field name="act_window_id" ref="vnfield_task_action" />
+    </record>
+    <record model="ir.ui.view" id="task_tree_view">
+        <field name="name">task.tree</field>
+        <field name="model">vnfield.task</field>
+        <field name="arch" type="xml">
+            <tree editable="top" open_form_view="True">
+                <field name="id" />
+                <field name="name" />
+                <field name="description" />
+                <field name="priority" />
+                <field name="status" />
+                <field name="deadline" />
+                <field name="assigner_id" />
+                <field name="assignee_id" />
+                <field name="verifier_id" />
+                <field name="project_id" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="task_form_view">
+        <field name="name">task.form</field>
+        <field name="model">vnfield.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="mb-2 d-flex flex-row gap-2">
+                    <button invisible="status!='not-started'" name="action_handle_click_for_start"
+                        type="object"
+                        string="Start"
+                        class="btn-primary" />
+                    <button invisible="status!='in-progress'" name="action_handle_click_for_resolve"
+                        type="object"
+                        string="Mark as Resolved"
+                        class="btn-primary" />
+                    <button
+                        invisible="status=='not-started' or status=='done' or status=='cancelled'"
+                        name="action_handle_click_for_cancelled"
+                        type="object"
+                        string="Cancel"
+                        class="btn-primary" />
+                    <button invisible="status!='resolved'" name="action_handle_click_for_done"
+                        type="object"
+                        string="Mark as Done"
+                        class="btn-primary" />
+                </div>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" />
+                            <field name="name" />
+                            <field name="description" />
+                            <field name="task_type_id" />
+                            <field name="priority" />
+                            <field name="verifier_id" />
+                            <field name="is_issue_task" />
+                        </group>
+                        <group>
+                            <field name="assign_at" />
+                            <field name="deadline" />
+                            <field name="start_at" />
+                            <field name="end_at" />
+                            <field name="status" />
+                            <field name="assignee_id" />
+                        </group>
+                    </group>
+
+                    <!-- <field name="related_issue_id" /> -->
+                    <notebook>
+                        <page string="Related Task">
+                            <sheet>
+                                <notebook>
+                                    <page string="Child Task">
+                                        <field name="child_task_ids" />
+                                    </page>
+                                    <page string="Dependent Task">
+                                        <field name="dependent_task_ids" />
+                                    </page>
+                                    <page string="Predecessor Task">
+                                        <field name="predecessor_task_ids" />
+                                    </page>
+                                    <page string="Parent Task">
+                                        <group>
+                                            <field name="parent_task_id" />
+                                        </group>
+                                    </page>
+                                </notebook>
+                            </sheet>
+                        </page>
+
+                        <page string="Issue">
+
+                            <group>
+                                <field name="related_issue_id" />
+                                <field name="resolve_for_issue_id" />
+                            </group>
+                        </page>
+                        <page string="Other Information">
+                            <group>
+                                <group>
+                                    <field name="project_id" />
+                                    <field name="assigner_id" />
+                                </group>
+                                <group>
+                                    <field name="approval_to_verify_id" />
+                                </group>
+                            </group>
+                            <group>
+
+                                <field name="attachment_ids"
+                                    widget="many2many_binary" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" options="{'post_refresh':True}"
+                        groups="base.group_user" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="task_kanban_view">
+        <field name="name">task.kanban</field>
+        <field name="model">vnfield.task</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_content  oe_kanban_global_click">
+                            <div class="d-flex flex-row gap-1">
+                                <div class="">
+                                    <field name="id" />
+                                </div>
+                                <div>
+                                    <field name="name" />
+                                </div>
+                            </div>
+                            <div>
+                                <field name="status" />
+                            </div>
+                            <div>
+                                <field name="priority" />
+                            </div>
+                            <div>
+                                <field name="deadline" />
+                            </div>
+                            <div>
+                                <field name="assigner_id" />
+                            </div>
+                            <div>
+                                <field name="assignee_id" />
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

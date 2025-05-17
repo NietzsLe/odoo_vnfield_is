@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="vnfield_project_root" name="Project" action="vnfield_project_action">
+        <menuitem id="vnfield_project_task_1level" name="Task">
+            <menuitem id="vnfield_project_task_action" action="vnfield_task_action" />
+            <menuitem id="vnfield_project_task_type_action" action="vnfield_task_type_action" />
+        </menuitem>
+        <menuitem id="vnfield_project_approval_1level" name="Approval">
+            <menuitem id="vnfield_project_approval_action" action="vnfield_approval_action" />
+            <menuitem id="vnfield_project_approval_step_action"
+                action="vnfield_approval_step_action" />
+            <menuitem id="vnfield_project_approval_step_type_action"
+                action="vnfield_approval_step_type_action" />
+        </menuitem>
+        <menuitem id="vnfield_project_issue_1level" name="Issue">
+            <menuitem id="vnfield_project_issue_action" action="vnfield_issue_action" />
+            <menuitem id="vnfield_project_issue_type_action" action="vnfield_issue_type_action" />
+        </menuitem>
+    </menuitem>
+</odoo>

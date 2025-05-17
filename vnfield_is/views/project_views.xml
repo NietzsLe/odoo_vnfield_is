@@ -1,0 +1,95 @@
+<odoo>
+    <record id="project_kanban_action_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">kanban</field>
+        <field name="act_window_id" ref="vnfield_project_action" />
+    </record>
+    <record model="ir.ui.view" id="project_tree_view">
+        <field name="name">project.tree</field>
+        <field name="model">vnfield.project</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="id" />
+                <field name="name" />
+                <field name="description" />
+                <field name="start_at" />
+                <field name="end_at" />
+                <field name="status" />
+                <field name="manager_id" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="project_form_view">
+        <field name="name">project.form</field>
+        <field name="model">vnfield.project</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" />
+                            <field name="name" />
+                            <field name="description" />
+
+                        </group>
+                        <group>
+                            <field name="status" />
+                            <field name="manager_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Other Informations">
+                            <group>
+                                <group>
+                                    <field name="start_at" />
+
+                                </group>
+                                <group>
+                                    <field name="end_at" />
+                                </group>
+                            </group>
+                            <group>
+                                <field name="member_ids" />
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="project_kanban_view">
+        <field name="name">project.kanban</field>
+        <field name="model">vnfield.project</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_content oe_kanban_global_click">
+                            <div class="d-flex flex-row gap-1">
+                                <div class="">
+                                    <field name="id" />
+                                </div>
+                                <div>
+                                    <field name="name" />
+                                </div>
+                            </div>
+                            <div>
+                                <field name="status" />
+                            </div>
+                            <div>
+                                <field name="start_at" />
+                            </div>
+                            <div>
+                                <field name="end_at" />
+                            </div>
+                            <div>
+                                <field name="manager_id" />
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

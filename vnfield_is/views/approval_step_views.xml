@@ -1,0 +1,107 @@
+<odoo>
+
+    <record model="ir.ui.view" id="approval_step_tree_view">
+        <field name="name">approval.step.tree</field>
+        <field name="model">vnfield.approval.step</field>
+        <field name="arch" type="xml">
+            <tree editable="top" open_form_view="True">
+                <field name="id" />
+                <field name="name" readonly="status!='comming'and status" />
+                <field name="step_type_id" readonly="status!='comming'and status" />
+                <field name="approval_step_period" readonly="status!='comming'and status" />
+                <field name="status" />
+                <field name="come_at" />
+                <field name="approval_at" />
+                <field name="approver_id" readonly="status!='comming'and status" />
+                <field name="approval_id" />
+                <!-- <button name="open_form_view" type="object" string="Open form"
+                    class="btn-primary" /> -->
+                <button invisible="status!='processing'" name="handle_click_review" type="object"
+                    string="Review"
+                    class="btn-primary" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="approval_step_not_create_not_delete_tree_view">
+        <field name="name">approval.step.tree</field>
+        <field name="model">vnfield.approval.step</field>
+        <field name="arch" type="xml">
+            <tree editable="top" create="false">
+                <field name="id" />
+                <field name="name" readonly="status!='comming'and status" />
+                <field name="step_type_id" readonly="status!='comming'and status" />
+                <field name="approval_step_period" readonly="status!='comming'and status" />
+                <field name="status" />
+                <field name="come_at" />
+                <field name="approval_at" />
+                <field name="approver_id" readonly="status!='comming'and status" />
+                <field name="approval_id" />
+                <button name="open_form_view" type="object" string="Open form"
+                    class="btn-primary" />
+                <button invisible="status!='processing'" name="handle_click_review" type="object"
+                    string="Review"
+                    class="btn-primary" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="approval_step_form_view">
+        <field name="name">approval.step.form</field>
+        <field name="model">vnfield.approval.step</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" />
+                            <field name="name" readonly="status!='comming'and status" />
+                            <field name="description" readonly="status!='comming'and status" />
+                            <field name="come_at" />
+                            <field name="approval_at" />
+                            <field name="approval_step_period"
+                                readonly="status!='comming'and status" />
+                        </group>
+                        <group>
+                            <field name="status" />
+                            <field name="comment" readonly="status=='comming'" />
+                            <field name="step_type_id" readonly="status!='comming'and status" />
+                            <field name="approver_id" readonly="status!='comming'and status" />
+                            <field name="approval_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Next Step">
+                            <field name="next_step_ids"
+                                options="{ 'create': False, 'create_edit': False}"
+                            ></field>
+
+                        </page>
+                        <page string="Previous Step">
+                            <field name="prev_step_ids"
+                                options="{ 'create': False, 'create_edit': False}"
+                                readonly="status!='comming'and status"
+                            />
+                        </page>
+                        <page string="Attachments">
+                            <group>
+                                <field name="attachment_ids"
+                                    widget="many2many_binary" />
+                            </group>
+                        </page>
+
+                    </notebook>
+
+
+                    <!-- <field name="verify_for_task_id" /> -->
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" options="{'post_refresh':True}"
+                        groups="base.group_user" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>
