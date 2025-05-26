@@ -24,9 +24,4 @@ from odoo.tools.float_utils import float_compare
 
 
 class ApprovalStepType(models.Model):
-    _name = "vnfield.approval.step.type"
-    # _inherit = ["mail.thread", "mail.activity.mixin"]
-    _description = "VN Field Approval Step Type"
-
-    name = fields.Char()
-    description = fields.Text()
+    _inherit = "vnfield.approval.step.type"

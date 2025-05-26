@@ -24,9 +24,4 @@ from odoo.tools.float_utils import float_compare
 
 
 class IssueType(models.Model):
-    _name = "vnfield.issue.type"
-    # _inherit = ["mail.thread", "mail.activity.mixin"]
-    _description = "VN Field Issue Type"
-
-    name = fields.Char()
-    description = fields.Text()
+    _inherit = "vnfield.issue.type"

@@ -24,7 +24,7 @@
     "version": "17.0.1.0.1",
     "author": "Nhan Le",
     "category": "Approval",
-    "depends": ["base", "mail", "web_m2x_options", "rest_api_odoo"],
+    "depends": ["base", "mail", "web_m2x_options", "rest_api_odoo", "vnfield"],
     "data": [
         "views/actions.xml",
         "views/project_views.xml",

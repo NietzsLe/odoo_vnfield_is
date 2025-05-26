@@ -24,9 +24,4 @@ from odoo.tools.float_utils import float_compare
 
 
 class TaskType(models.Model):
-    _name = "vnfield.task.type"
-    # _inherit = ["mail.thread", "mail.activity.mixin"]
-    _description = "VN Field Task Type"
-
-    name = fields.Char()
-    description = fields.Text()
+    _inherit = "vnfield.task.type"
