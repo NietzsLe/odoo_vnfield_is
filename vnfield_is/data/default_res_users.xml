@@ -1,30 +1,37 @@
 <odoo>
-    <data noupdate="1">
+    <data>
         <record id="user_default_nhan1" model="res.users">
             <field name="name">Nhan1 SC1</field>
             <field name="login">nhan1.sc1</field>
             <field name="email">nhan1.sc1@example.com</field>
+            <field name="organization_name">SC1</field>
             <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]" />
             <field name="password">123456</field>
+
         </record>
         <record id="user_default_nhan2" model="res.users">
             <field name="name">Nhan2 SC1</field>
             <field name="login">nhan2.sc1</field>
             <field name="email">nhan2.sc1@example.com</field>
+            <field name="organization_name">SC1</field>
             <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]" />
             <field name="password">123456</field>
+
         </record>
         <record id="user_default_nhan3" model="res.users">
             <field name="name">Nhan3 SC2</field>
             <field name="login">nhan3.sc2</field>
             <field name="email">nhan3.sc2@example.com</field>
+            <field name="organization_name">SC2</field>
             <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]" />
             <field name="password">123456</field>
+
         </record>
         <record id="user_default_nhan4" model="res.users">
             <field name="name">Nhan4 SC2</field>
             <field name="login">nhan4.sc2</field>
             <field name="email">nhan4.sc2@example.com</field>
+            <field name="organization_name">SC2</field>
             <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]" />
             <field name="password">123456</field>
         </record>
