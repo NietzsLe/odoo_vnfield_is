@@ -3,54 +3,54 @@ import traceback
 from ...kafka_producer import produce
 
 if TYPE_CHECKING:
-    from ...models.approval_step import ApprovalStep
+    from ...models.task import Task
 
 from ...models.res_users import ResUsers
 
 
-class ApprovalStepKafkaClient:
+class TaskKafkaClient:
     def __init__(self, env):
         self.env = env
 
-    def update(self, vals: dict, approval_step: "ApprovalStep", user: "ResUsers"):
+    def update(self, vals: dict, task: "Task", user: "ResUsers"):
         try:
-            org_names = [approval_step.approver_id.organization_name]
+            org_names = [task.approver_id.organization_name]
             org_names = list(filter(lambda x: x != user.organization_name, org_names))
             header = {
                 "method": "update",
                 "org_names": org_names,
                 "entity": "approval.step",
-                "id": approval_step.id,
+                "id": task.id,
             }
             produce(self.env, vals, header)
         except Exception as e:
             traceback.print_exc()
 
-    def create(self, vals: dict, approval_step: "ApprovalStep", user: "ResUsers"):
+    def create(self, vals: dict, task: "Task", user: "ResUsers"):
         try:
-            org_names = [approval_step.approver_id.organization_name]
+            org_names = [task.approver_id.organization_name]
             org_names = list(filter(lambda x: x != user.organization_name, org_names))
             header = {
                 "method": "create",
                 "org_names": org_names,
                 "entity": "approval.step",
-                "id": approval_step.id,
+                "id": task.id,
             }
             produce(self.env, vals, header)
         except Exception as e:
             traceback.print_exc()
 
 
-class ApprovalStepIntegrationService:
+class TaskIntegrationService:
 
     def __init__(self, env):
         self.env = env
-        self.approval_step_client = ApprovalStepKafkaClient(self.env)
+        self.task_client = TaskKafkaClient(self.env)
 
-    def update(self, vals: dict, approval_step: "ApprovalStep", user: "ResUsers"):
+    def update(self, vals: dict, task: "Task", user: "ResUsers"):
 
-        self.approval_step_client.update(vals, approval_step, user)
+        self.task_client.update(vals, task, user)
 
-    def create(self, vals: dict, approval_step: "ApprovalStep", user: "ResUsers"):
+    def create(self, vals: dict, task: "Task", user: "ResUsers"):
 
-        self.approval_step_client.create(vals, approval_step, user)
+        self.task_client.create(vals, task, user)

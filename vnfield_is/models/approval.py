@@ -22,7 +22,7 @@
 from odoo import api, fields, models, http
 from odoo.tools.float_utils import float_compare
 from odoo.exceptions import UserError
-from ..services.integrations.approval_step import ApprovalStepIntegrationService
+from ..services.integrations.approval import ApprovalIntegrationService
 
 
 class Approval(models.Model):

@@ -14,8 +14,11 @@ def produce(env, value, headers):
     """
 
     # Tạo KafkaProducer (kết nối Kafka)
+    print([env["ir.config_parameter"].sudo().get_param("vnfield_cs.kafka_server")])
     producer = KafkaProducer(
-        bootstrap_servers=env.sudo().get_param("vnfield_cs.kafka_server"),
+        bootstrap_servers=[
+            env["ir.config_parameter"].sudo().get_param("vnfield_cs.kafka_server")
+        ],
         value_serializer=lambda v: (
             json.dumps(v).encode("utf-8")
             if isinstance(v, dict)
@@ -24,9 +27,20 @@ def produce(env, value, headers):
         key_serializer=lambda k: k.encode("utf-8") if k else None,
     )
 
-    # Chuyển headers dict -> list of tuples (bytes)
-    header_list = [(k, v.encode()) for k, v in (headers or {}).items()]
+# producer = KafkaProducer(
+#     bootstrap_servers=[
+#         "192.168.56.117:9092"
+#     ],
+#     value_serializer=lambda v: (
+#         json.dumps(v).encode("utf-8")
+#         if isinstance(v, dict)
+#         else str(v).encode("utf-8")
+#     ),
+# )
 
+    # Chuyển headers dict -> list of tuples (bytes)
+    print([(k, v) for k, v in (headers or {}).items()])
+    header_list = [(k, v) for k, v in (headers or {}).items()]
     # Gửi message
     producer.send("odoo-integration", value=value, headers=header_list)
     producer.flush()  # Đảm bảo message được gửi đi
