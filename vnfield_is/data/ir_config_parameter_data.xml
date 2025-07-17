@@ -1,8 +1,0 @@
-<odoo>
-    <data noupdate="1">
-        <record id="kafka_server" model="ir.config_parameter">
-            <field name="key">vnfield_cs.kafka_server</field>
-            <field name="value">127.0.0.1:9092</field>
-        </record>
-    </data>
-</odoo>

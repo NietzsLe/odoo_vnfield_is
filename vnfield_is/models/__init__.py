@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+
+from . import approval_step
+from . import contractor  
+from . import kafka_util
+from . import project
+from . import res_users
+from . import task
 #############################################################################
 #
 #    Cybrosys Technologies Pvt. Ltd.
@@ -18,7 +25,10 @@
 #    (LGPL v3) along with this program.
 #    If not, see <http://www.gnu.org/licenses/>.
 #
-#############################################################################
+# ═══════════════════════════════════════════════════════════
+# ═             VNFIELD INTEGRATION SYSTEM MODELS          ═
+# ═══════════════════════════════════════════════════════════
+
 from . import approval
 from . import approval_step
 from . import approval_step_type
@@ -28,3 +38,8 @@ from . import task
 from . import task_tree
 from . import task_type
 from . import project
+from . import res_users
+from . import contractor
+
+# 🔗 NEW ENHANCED IS MODELS
+from . import agreement        # 📋 Agreement management
